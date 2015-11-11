@@ -207,7 +207,7 @@ class Parms(object):
 
         # timestepping parameters
         dt=60.,                     # numerical timstep
-        tplot=600.,              # interval for plots (in timesteps)
+        tplot=600.,                 # interval for plots (in timesteps)
         tmax=10*86400.,             # total time of integration
     ):
         
@@ -309,7 +309,7 @@ def solve_sw(parms, uvh0):
         
         if (ii-0)%parms.npt==0:
 
-            print "t  = %f hours" % (t/3600./24.)
+            print "t  = %f hours" % (t/3600.)
 
             hsave[cnt,:] = uvh[2,:]
             cnt += 1
@@ -365,7 +365,7 @@ plt.ioff()
 plt.show()
 
 plt.clf()
-plt.pcolormesh(tpt/(3600),parms.y/1e3,q.T)
+plt.pcolormesh(np.linspace(0, parms.tmax, q.shape[0]),parms.y/1e3,q.T)
 plt.ylabel('y (km)')
 plt.xlabel('Time (hours)')
 plt.title('Forcing: 1D 1-layer SW')
